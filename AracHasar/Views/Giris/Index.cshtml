@@ -1,0 +1,87 @@
+﻿@model AracHasar.data.Kullanıcı
+
+@{
+    ViewBag.Title = "View";
+    Layout = "~/Views/ThemeLayout/theme.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+
+    <style>
+    #giris-div {
+        position: absolute;
+        left: 40%;
+        top: 40%;
+        border: 1px solid #ccc;
+        padding: 10px 10px;
+    }
+    .field-validation-error{
+        color:red;
+    }
+    </style>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>GİRİŞ</title>
+    >
+</head>
+<body>
+    <div id="giris-div">
+        @using (Html.BeginForm("Autherize", "Giris", FormMethod.Post))
+        {
+            <table>
+                <tr>
+                    <td></td>
+                    <td style="text-decoration:underline" > Araç Hasar Kaydı Kullanıcı Girişi </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.LabelFor(Model => Model.Kullanıcıİsmi)
+                    </td>
+                    <td>
+                        @Html.EditorFor(Model => Model.Kullanıcıİsmi)
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>@Html.ValidationMessageFor(Model => Model.Kullanıcıİsmi)</td>
+                   
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(Model => Model.Sifre) </td>
+                    <td>@Html.EditorFor(Model => Model.Sifre) </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <label class="field-validation-error">@Html.DisplayFor(Model =>Model.GirisErrorMessage)</label> 
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>@Html.ValidationMessageFor(Model => Model.Sifre)</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <input type="submit" name="isim" value="Giris"/>
+                        <input type="reset" name="isim" value="SİL" />
+                    </td>
+                </tr>
+            </table>
+        }
+
+
+    </div>
+
+
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+</body>
+</html>
+
+

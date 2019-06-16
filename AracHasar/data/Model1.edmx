@@ -1,0 +1,221 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="GirisDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AracHasarBilgisi">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MotorNo" Type="int" />
+          <Property Name="PlakaNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="ListeTipi" Type="nvarchar" MaxLength="50" />
+          <Property Name="Acente" Type="nvarchar" MaxLength="50" />
+          <Property Name="Sube" Type="nvarchar" MaxLength="50" />
+          <Property Name="HasarBolgesi" Type="nvarchar" MaxLength="50" />
+          <Property Name="HasarDerecesi" Type="nvarchar" MaxLength="50" />
+          <Property Name="KazaSebebi" Type="nvarchar" MaxLength="50" />
+          <Property Name="KazaTarihi" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Kullanıcı">
+          <Key>
+            <PropertyRef Name="KullanıcıID" />
+          </Key>
+          <Property Name="KullanıcıID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Kullanıcıİsmi" Type="varchar" MaxLength="50" />
+          <Property Name="Sifre" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="MusteriBilgisi">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MotorNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="MusteriNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="AdSoyad" Type="nvarchar" MaxLength="50" />
+          <Property Name="TelNo" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <Association Name="FK_MusteriBilgisi_AracHasarBilgisi">
+          <End Role="AracHasarBilgisi" Type="Self.AracHasarBilgisi" Multiplicity="1" />
+          <End Role="MusteriBilgisi" Type="Self.MusteriBilgisi" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="AracHasarBilgisi">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MusteriBilgisi">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="GirisDBModelStoreContainer">
+          <EntitySet Name="AracHasarBilgisi" EntityType="Self.AracHasarBilgisi" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Kullanıcı" EntityType="Self.Kullanıcı" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MusteriBilgisi" EntityType="Self.MusteriBilgisi" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_MusteriBilgisi_AracHasarBilgisi" Association="Self.FK_MusteriBilgisi_AracHasarBilgisi">
+            <End Role="AracHasarBilgisi" EntitySet="AracHasarBilgisi" />
+            <End Role="MusteriBilgisi" EntitySet="MusteriBilgisi" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="GirisDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AracHasarBilgisi">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MotorNo" Type="Int32" />
+          <Property Name="PlakaNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ListeTipi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Acente" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Sube" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="HasarBolgesi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="HasarDerecesi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KazaSebebi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KazaTarihi" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="MusteriBilgisi" Relationship="Self.FK_MusteriBilgisi_AracHasarBilgisi" FromRole="AracHasarBilgisi" ToRole="MusteriBilgisi" />
+        </EntityType>
+        <EntityType Name="Kullanıcı">
+          <Key>
+            <PropertyRef Name="KullanıcıID" />
+          </Key>
+          <Property Name="KullanıcıID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Kullanıcıİsmi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Sifre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="MusteriBilgisi">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MotorNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MusteriNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AdSoyad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TelNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AracHasarBilgisi" Relationship="Self.FK_MusteriBilgisi_AracHasarBilgisi" FromRole="MusteriBilgisi" ToRole="AracHasarBilgisi" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK_MusteriBilgisi_AracHasarBilgisi">
+          <End Role="AracHasarBilgisi" Type="Self.AracHasarBilgisi" Multiplicity="1" />
+          <End Role="MusteriBilgisi" Type="Self.MusteriBilgisi" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="AracHasarBilgisi">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MusteriBilgisi">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="GirisDBEntities6" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AracHasarBilgisi" EntityType="Self.AracHasarBilgisi" />
+          <EntitySet Name="Kullanıcı" EntityType="Self.Kullanıcı" />
+          <EntitySet Name="MusteriBilgisi" EntityType="Self.MusteriBilgisi" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <AssociationSet Name="FK_MusteriBilgisi_AracHasarBilgisi" Association="Self.FK_MusteriBilgisi_AracHasarBilgisi">
+            <End Role="AracHasarBilgisi" EntitySet="AracHasarBilgisi" />
+            <End Role="MusteriBilgisi" EntitySet="MusteriBilgisi" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="GirisDBModelStoreContainer" CdmEntityContainer="GirisDBEntities6">
+          <EntitySetMapping Name="AracHasarBilgisi">
+            <EntityTypeMapping TypeName="GirisDBModel.AracHasarBilgisi">
+              <MappingFragment StoreEntitySet="AracHasarBilgisi">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="MotorNo" ColumnName="MotorNo" />
+                <ScalarProperty Name="PlakaNo" ColumnName="PlakaNo" />
+                <ScalarProperty Name="ListeTipi" ColumnName="ListeTipi" />
+                <ScalarProperty Name="Acente" ColumnName="Acente" />
+                <ScalarProperty Name="Sube" ColumnName="Sube" />
+                <ScalarProperty Name="HasarBolgesi" ColumnName="HasarBolgesi" />
+                <ScalarProperty Name="HasarDerecesi" ColumnName="HasarDerecesi" />
+                <ScalarProperty Name="KazaSebebi" ColumnName="KazaSebebi" />
+                <ScalarProperty Name="KazaTarihi" ColumnName="KazaTarihi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Kullanıcı">
+            <EntityTypeMapping TypeName="GirisDBModel.Kullanıcı">
+              <MappingFragment StoreEntitySet="Kullanıcı">
+                <ScalarProperty Name="KullanıcıID" ColumnName="KullanıcıID" />
+                <ScalarProperty Name="Kullanıcıİsmi" ColumnName="Kullanıcıİsmi" />
+                <ScalarProperty Name="Sifre" ColumnName="Sifre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MusteriBilgisi">
+            <EntityTypeMapping TypeName="GirisDBModel.MusteriBilgisi">
+              <MappingFragment StoreEntitySet="MusteriBilgisi">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="MotorNo" ColumnName="MotorNo" />
+                <ScalarProperty Name="MusteriNo" ColumnName="MusteriNo" />
+                <ScalarProperty Name="AdSoyad" ColumnName="AdSoyad" />
+                <ScalarProperty Name="TelNo" ColumnName="TelNo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="GirisDBModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

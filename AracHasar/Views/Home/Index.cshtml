@@ -1,0 +1,25 @@
+﻿
+@{
+    Layout = null;
+    if (Session["kullanıcıID"] == null)
+    {
+        Response.Redirect("~/Giris/Index");
+    }
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <div>
+        <h1> dd</h1>
+        <h3> Kullanıcıİsmi : @Session["Kullanıcıİsmi"].ToString() </h3>
+        <a href="@Url.Action("logOut","Giris")">Logout</a>
+    </div>
+</body>
+</html>
+

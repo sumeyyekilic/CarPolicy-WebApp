@@ -1,0 +1,102 @@
+﻿@model IEnumerable<AracHasar.data.AracHasarBilgisi>
+
+@{
+    ViewBag.Title = "Liste";
+    Layout = "~/Views/ThemeLayout/layout_one_theme.cshtml";
+}
+
+<section class="content-header">
+    <h1>
+        Arac Hasar Kayıt listesi
+        
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="#">Examples</a></li>
+        <li class="active">Blank page</li>
+    </ol>
+</section><!-- Main content -->
+ <section class="content">
+     <h1>
+         <p>
+             @Html.ActionLink("Yeni Hasar", "Yeni")
+         </p>
+     </h1>
+    <div class="box">
+        <div class="box-body">
+            <table class="table">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.PlakaNo)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.MotorNo)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ListeTipi)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Acente)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Sube)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.HasarBolgesi)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.HasarDerecesi)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.KazaSebebi)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.KazaTarihi)
+                    </th>
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PlakaNo)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MotorNo)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ListeTipi)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Acente)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Sube)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.HasarBolgesi)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.HasarDerecesi)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.KazaSebebi)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.KazaTarihi)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Düzenle", "Duzenle", new { id=item.ID }) |
+                            @Html.ActionLink("Göster", "Goster", new { id=item.ID }) |
+                            @Html.ActionLink("Sil", "Sil", new { id=item.ID })
+                        </td>
+                    </tr>
+                }
+
+            </table>
+
+        </div>
+
+    </div>
+</section>

@@ -1,0 +1,105 @@
+﻿@model AracHasar.data.AracHasarBilgisi
+
+@{
+    ViewBag.Title = "Goster";
+    Layout = "~/Views/ThemeLayout/layout_one_theme.cshtml";
+}
+
+<section class="content-header">
+    
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="#">Examples</a></li>
+        <li class="active">Blank page</li>
+    </ol>
+</section><!-- Main content -->
+<section class="content">
+    <h2>Göster</h2>
+
+    <div>
+        <h2>AracHasarBilgisi</h2>
+        <hr />
+        <h4>
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.PlakaNo)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.PlakaNo)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.MotorNo)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.MotorNo)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.ListeTipi)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.ListeTipi)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Acente)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Acente)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Sube)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Sube)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.HasarBolgesi)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.HasarBolgesi)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.HasarDerecesi)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.HasarDerecesi)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.KazaSebebi)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.KazaSebebi)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.KazaTarihi)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.KazaTarihi)
+                </dd>
+
+            </dl>
+        </h4>
+    </div> 
+    
+ <p> <h3>
+    @Html.ActionLink("Düzenle", "Duzenle", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Listeye Dön", "Liste")
+    </h3>
+</p>
+        
+</section>

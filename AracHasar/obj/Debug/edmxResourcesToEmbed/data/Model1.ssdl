@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="GirisDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="AracHasarBilgisi">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MotorNo" Type="int" />
+    <Property Name="PlakaNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="ListeTipi" Type="nvarchar" MaxLength="50" />
+    <Property Name="Acente" Type="nvarchar" MaxLength="50" />
+    <Property Name="Sube" Type="nvarchar" MaxLength="50" />
+    <Property Name="HasarBolgesi" Type="nvarchar" MaxLength="50" />
+    <Property Name="HasarDerecesi" Type="nvarchar" MaxLength="50" />
+    <Property Name="KazaSebebi" Type="nvarchar" MaxLength="50" />
+    <Property Name="KazaTarihi" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Kullanıcı">
+    <Key>
+      <PropertyRef Name="KullanıcıID" />
+    </Key>
+    <Property Name="KullanıcıID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Kullanıcıİsmi" Type="varchar" MaxLength="50" />
+    <Property Name="Sifre" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="MusteriBilgisi">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MotorNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="MusteriNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="AdSoyad" Type="nvarchar" MaxLength="50" />
+    <Property Name="TelNo" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <Association Name="FK_MusteriBilgisi_AracHasarBilgisi">
+    <End Role="AracHasarBilgisi" Type="Self.AracHasarBilgisi" Multiplicity="1" />
+    <End Role="MusteriBilgisi" Type="Self.MusteriBilgisi" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="AracHasarBilgisi">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="MusteriBilgisi">
+        <PropertyRef Name="ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="GirisDBModelStoreContainer">
+    <EntitySet Name="AracHasarBilgisi" EntityType="Self.AracHasarBilgisi" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Kullanıcı" EntityType="Self.Kullanıcı" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MusteriBilgisi" EntityType="Self.MusteriBilgisi" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_MusteriBilgisi_AracHasarBilgisi" Association="Self.FK_MusteriBilgisi_AracHasarBilgisi">
+      <End Role="AracHasarBilgisi" EntitySet="AracHasarBilgisi" />
+      <End Role="MusteriBilgisi" EntitySet="MusteriBilgisi" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

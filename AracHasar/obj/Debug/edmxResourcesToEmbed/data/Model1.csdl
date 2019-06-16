@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="GirisDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="AracHasarBilgisi">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MotorNo" Type="Int32" />
+    <Property Name="PlakaNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ListeTipi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Acente" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Sube" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="HasarBolgesi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="HasarDerecesi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="KazaSebebi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="KazaTarihi" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="MusteriBilgisi" Relationship="Self.FK_MusteriBilgisi_AracHasarBilgisi" FromRole="AracHasarBilgisi" ToRole="MusteriBilgisi" />
+  </EntityType>
+  <EntityType Name="Kullanıcı">
+    <Key>
+      <PropertyRef Name="KullanıcıID" />
+    </Key>
+    <Property Name="KullanıcıID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Kullanıcıİsmi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Sifre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="MusteriBilgisi">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MotorNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MusteriNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="AdSoyad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TelNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AracHasarBilgisi" Relationship="Self.FK_MusteriBilgisi_AracHasarBilgisi" FromRole="MusteriBilgisi" ToRole="AracHasarBilgisi" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <Association Name="FK_MusteriBilgisi_AracHasarBilgisi">
+    <End Role="AracHasarBilgisi" Type="Self.AracHasarBilgisi" Multiplicity="1" />
+    <End Role="MusteriBilgisi" Type="Self.MusteriBilgisi" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="AracHasarBilgisi">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="MusteriBilgisi">
+        <PropertyRef Name="ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="GirisDBEntities6" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="AracHasarBilgisi" EntityType="Self.AracHasarBilgisi" />
+    <EntitySet Name="Kullanıcı" EntityType="Self.Kullanıcı" />
+    <EntitySet Name="MusteriBilgisi" EntityType="Self.MusteriBilgisi" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <AssociationSet Name="FK_MusteriBilgisi_AracHasarBilgisi" Association="Self.FK_MusteriBilgisi_AracHasarBilgisi">
+      <End Role="AracHasarBilgisi" EntitySet="AracHasarBilgisi" />
+      <End Role="MusteriBilgisi" EntitySet="MusteriBilgisi" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
